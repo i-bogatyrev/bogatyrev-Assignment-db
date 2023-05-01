@@ -56,3 +56,5 @@ webencodings==0.5.1
 wsproto==1.2.0
 xattr==0.10.1
 zipp==3.15.0
+
+pytz~=2023.3

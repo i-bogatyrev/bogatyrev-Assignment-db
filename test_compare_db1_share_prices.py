@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, date
 import re
+import pytz
 
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
@@ -98,17 +99,18 @@ def compare_share_data(price1, time1, price2, time2):
     today_date = today.strftime("%B %d, %Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
+    time_zone = get_central_european_timezone()
     print("\nCurrent Date =", today_date)
-    print("Current Time =", current_time, "CEST")
+    print("Current Time =", current_time, time_zone)
 
     datetime1 = datetime.strptime(time1, time_format)
     datetime2 = datetime.strptime(time2, time_format)
 
     print("\nDB1 Share price on Deutsche Boerse web page:")
-    print(f"Price: {price1}€, Time: {time1} CEST")
+    print(f"Price: {price1}€, Time: {time1} {time_zone}")
 
     print("\nDB1 Share price on Yahoo web page:")
-    print(f"Price: {price2}€, Time: {time2} CEST")
+    print(f"Price: {price2}€, Time: {time2} {time_zone}")
 
     price_difference = abs(price1 - price2)
     print(f"\nPrice Difference: {price_difference:.2f}")
@@ -131,3 +133,10 @@ def print_text_in_box(text):
     print("| " + text + " |")
     print(empty_line)
     print(border)
+
+
+def get_central_european_timezone():
+    cet = pytz.timezone('CET')
+    current_time = datetime.now(cet)
+    is_dst = current_time.dst() != timedelta(0)
+    return 'CEST' if is_dst else 'CET'

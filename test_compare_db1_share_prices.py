@@ -28,8 +28,8 @@ def test_compare_db1_share_prices():
     cookies_accept_button.click()
 
     # 2. Locating elements at DB page and scroll into view
-    WebDriverWait(driver, 20).until(EC.frame_to_be_available_and_switch_to_it(3))
-    # driver.switch_to.frame(3)
+    WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(3))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "wrapper_t1")))
     parent_element_db = driver.find_element(By.CLASS_NAME, "wrapper_t1")
     driver.execute_script("arguments[0].scrollIntoView();", parent_element_db)
     price_element_db = parent_element_db.find_element(By.CLASS_NAME, 'closing_price')
@@ -55,6 +55,7 @@ def test_compare_db1_share_prices():
     accept_cookies_btn.click()
 
     # 5. Locating elements
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'quote-header-info')))
     parent_element_yh = driver.find_element(By.ID, 'quote-header-info')
     price_element_yh_web = parent_element_yh.find_element(By.XPATH, "//*[@data-test='qsp-price']")
     time_element_from_yh_web = parent_element_yh.find_element(By.ID, 'quote-market-notice')

@@ -20,12 +20,12 @@ In terminal go to project root folder and run this command
 To run the test, run the following command in the project root folder
 
 ```bash
-  pytest -s  test_compare_db1_share_prices.py 
+  pytest -s test_compare_db1_share_prices.py --html=report.html --capture=tee-sys
 ```
 
 
 ## Example of test output, positive result
-
+Results of the test in the form of console output are available in report.html, or also in the console log after the test has run.
 ```bash
 +-------------+
 |             |

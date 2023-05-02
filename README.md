@@ -12,7 +12,7 @@ This project demonstrates the use of Python, Selenium WebDriver, and Pytest to a
 In terminal go to project root folder and run this command
 
 ```bash
-  pip3 install -r requirements.txt         
+  pip3 install -r requirements.txt
 ```
     
 ## Running Tests
